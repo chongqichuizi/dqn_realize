@@ -45,7 +45,10 @@ class Agent:
             with torch.no_grad():
                 action_values = self.Q_local(state)     # 根据state计算出所有actions的values，不追踪梯度
             # 选取value最大的action返回
-            return np.argmax(action_values.cpu().data.numpy())      # cuda支持的的数据只能为tensor，只有转移到cpu才能变成numpy
+            # tmp = torch.argmax(action_values).cpu().data.numpy()
+            # print(tmp, type(tmp))
+            return torch.argmax(action_values).cpu().data.numpy()     # cuda支持的的数据为tensor，只有转移到cpu才能变成numpy
+            # return torch.max(action_values)[1].data.numpy()
         else:
             return random.choice(np.arange(self.action_size))
 

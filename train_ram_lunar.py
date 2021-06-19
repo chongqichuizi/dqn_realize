@@ -38,6 +38,7 @@ def train(env, agent, num_episode, eps_init, eps_decay, eps_min, max_t):
         rewards_log.append(episodic_reward)
         average_log.append(np.mean(rewards_log[-100:]))
         print("\r Episode {}, reward {:.3f}, average reward {:.3f}".format(i, episodic_reward, average_log[-1]), end='')
+        # print("\r Episode {}".format(i))
         if i % 50 == 0:
             print()
 
